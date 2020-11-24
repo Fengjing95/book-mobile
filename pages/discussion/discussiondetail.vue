@@ -67,7 +67,13 @@
 				})
 			},
 			publish() {
-				this.$u.route('/pages/discussion/editor')
+				if(this.isBanned) {
+					uni.showToast({
+						title: '您正处于禁言期，无法发布动态'
+					})
+				} else {
+					this.$u.route('/pages/discussion/editor')
+				}
 			},
 			joinBd() {
 				this.$u.get(`/bduser/join?bdId=${this.bdId}`).then(res => {
