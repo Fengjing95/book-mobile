@@ -45,12 +45,10 @@
 				loadStatus: false,
 				isBanned: false,
 				myId: undefined,
+				photo: ''
 			}
 		},
 		computed: {
-			photo() {
-				return this.$photoHeader + this.discussion.bdPhoto
-			}
 		},
 		methods: {
 			getDiscussionDetail() {
@@ -60,6 +58,7 @@
 					this.bdInfo = res.obj
 					this.isBanned = res.obj.isBanned
 					this.myId = res.obj.myId
+					this.photo = this.$photoHeader + this.discussion.bdPhoto
 					uni.setNavigationBarTitle({
 						title: this.discussion.bdName
 					})
@@ -99,7 +98,7 @@
 			},
 			getDynamicList() {
 				this.$u.get(`/dynamic/querydynamic?bdId=${this.bdId}&pageNumber=${this.pageNumber}&pageSize=10`).then(res => {
-					console.log(res);
+					// console.log(res);
 					this.dynamicList.push(...res.obj.content)
 					this.allPageNumber = res.obj.totalPages
 					this.loadStatus = false

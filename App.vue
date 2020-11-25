@@ -15,7 +15,7 @@
 					  index: 3
 					});
 				} else {
-					uni.hiddenTabBarRedDot({
+					uni.hideTabBarRedDot({
 					  index: 3
 					});
 				}

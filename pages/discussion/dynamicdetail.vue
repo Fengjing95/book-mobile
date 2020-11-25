@@ -66,13 +66,12 @@
 				reviewList: [],
 				pageNumber: 1,
 				allPageNumber: undefined,
-				review: ''
+				review: '',
+				userPhoto: ''
 			}
 		},
 		computed: {
-			userPhoto() {
-				return this.$photoHeader + this.dynamic.user.image
-			}
+			
 		},
 		methods: {
 			getDynamic() {
@@ -83,6 +82,7 @@
 					this.isBanned = res.obj.isBanned
 					this.my = res.obj.my
 					this.nowUser = res.obj.nowUser
+					this.userPhoto = this.$photoHeader + this.dynamic.user.image
 				}).finally(() => {
 					this.loading = false
 				})
@@ -262,6 +262,9 @@
 			display: inline-block;
 			position: relative;
 			top: -12px;
+			// #ifdef MP-WEIXIN  
+			top: 0;
+			// #endif 
 			width: 20vw;
 		}
 	}

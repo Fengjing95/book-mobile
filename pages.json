@@ -11,7 +11,7 @@
 	// 	}]
 	// },
 	"pages": [{
-			"path": "pages/book/book",
+			"path": "pages/book/bookshop",
 			"style": {
 				"navigationBarTitleText": "书城",
 				"enablePullDownRefresh": true,
@@ -141,6 +141,24 @@
             }
             
         }
+        ,{
+            "path" : "pages/mine/collection",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的书架",
+                "enablePullDownRefresh": true
+            }
+            
+        }
+        ,{
+            "path" : "pages/book/book",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": true
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarBackgroundColor": "#409eff",
@@ -152,7 +170,7 @@
 		"backgroundColor": "#FFFFFF",
 		"borderStyle": "black",
 		"list": [{
-				"pagePath": "pages/book/book",
+				"pagePath": "pages/book/bookshop",
 				"iconPath": "static/icon/book.png",
 				"selectedIconPath": "static/icon/book-select.png",
 				"text": "书城"

@@ -20,6 +20,11 @@ const store = new Vuex.Store({
 		},
 		freshToken(state) {
 			state.token = uni.getStorageSync('token')
+		},
+		logout(state) {
+			state.userMsg = 0
+			state.noticeNum = 0
+			state.systemNum = 0
 		}
 	},
     actions: {},

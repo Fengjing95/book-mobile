@@ -9,12 +9,17 @@
 		data() {
 			return {
 				
-			};
+			}
 		},
-		
+		methods: {
+			
+		},
+		onNavigationBarButtonTap() {
+			this.$u.route('/pages/attendance/attendance')
+		}
 	}
 </script>
 
-<style lang="less" scoped>
+<style>
 
 </style>

@@ -21,7 +21,7 @@
 							</view>
 							<view class="item-container">
 								<view class="thumb-box" v-for="(item1, index1) in bookList" :key="index1">
-									<image class="item-menu-image" :src="$photoHeader+item1.image" mode=""></image>
+									<image class="item-menu-image" :src="getImg(item1.image)" mode=""></image>
 									<view class="item-menu-name">{{item1.bookName}}</view>
 								</view>
 							</view>
@@ -55,14 +55,14 @@
 		methods: {
 			getBookList() {
 				this.$u.get(`/book/fuzzy?key=${this.keyword}&type=${this.current}&pageNumber=${this.pageNumber}&pageSize=27`).then(res => {
-					console.log(res);
+					// console.log(res);
 					this.bookList.push(...res.obj.content)
 					this.allPageNumber = res.obj.totalPages
 					this.loading = false
 				})
 			},
-			getImg() {
-				return Math.floor(Math.random() * 35);
+			getImg(image) {
+				return this.$photoHeader + image
 			},
 			// 点击左边的栏目切换
 			async swichMenu(index) {

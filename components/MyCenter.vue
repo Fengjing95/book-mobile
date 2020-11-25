@@ -26,7 +26,7 @@
 
 		<view class="u-m-t-20">
 			<u-cell-group>
-				<u-cell-item icon="star" title="收藏"></u-cell-item>
+				<u-cell-item icon="star" title="收藏" @click="gotoCollection"></u-cell-item>
 				<u-cell-item icon="chat" title="消息" @click="goToMsg">
 					<u-badge type="error" :count="msgNum"></u-badge>
 				</u-cell-item>
@@ -95,6 +95,9 @@
 					}
 				})
 			},
+			gotoCollection() {
+				this.$u.route('/pages/mine/collection')
+			},
 			chooseAvatar() {
 				this.$u.route({
 					url: '/uview-ui/components/u-avatar-cropper/u-avatar-cropper',
@@ -120,6 +123,7 @@
 							callback: function() {
 								uni.clearStorageSync()
 								_this.$store.commit('freshToken')
+								_this.$store.commit('logout')
 							}
 						})
 					}
