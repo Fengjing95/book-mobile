@@ -188,9 +188,9 @@
 		color: #fff;
 		box-sizing: border-box;
 		box-shadow: 0 3px 3px rgba(0,0,0,0.2);
-		position: absolute;
-		bottom: 40px;
-		right: 20px;
+		position: fixed;
+		bottom: 60px;
+		right: 30px;
 		&:active {
 			background-color: #2767a8;
 		}

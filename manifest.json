@@ -50,10 +50,14 @@
                     "<uses-feature android:name=\"android.hardware.camera\"/>",
                     "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
-                ]
+                ],
+                "abiFilters" : [ "armeabi-v7a" ],
+                "schemes" : "shuyuan"
             },
             /* ios打包配置 */
-            "ios" : {},
+            "ios" : {
+                "urltypes" : "shuyuan"
+            },
             /* SDK配置 */
             "sdkConfigs" : {}
         }
@@ -80,7 +84,11 @@
     "h5" : {
         "template" : "template.h5.html",
         "router" : {
-            "mode" : "history"
+            "mode" : "history",
+            "base" : ""
+        },
+        "devServer" : {
+            "https" : false
         }
     }
 }

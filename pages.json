@@ -13,7 +13,7 @@
 	"pages": [{
 			"path": "pages/book/bookshop",
 			"style": {
-				"navigationBarTitleText": "书城",
+				"navigationBarTitleText": "首页",
 				"enablePullDownRefresh": true,
 				"app-plus": {
 					"bounce":"none",
@@ -159,6 +159,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/mine/history",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "历史记录",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarBackgroundColor": "#409eff",
@@ -173,7 +182,7 @@
 				"pagePath": "pages/book/bookshop",
 				"iconPath": "static/icon/book.png",
 				"selectedIconPath": "static/icon/book-select.png",
-				"text": "书城"
+				"text": "首页"
 			},
 			{
 				"pagePath": "pages/discussion/discussion",

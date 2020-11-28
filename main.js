@@ -65,6 +65,12 @@ Vue.filter('intervalTime', function (startTime) {
   return result
 })
 
+// 挂载过滤器=>格式化时间yyyy-mm-dd
+Vue.filter('formatDate', function (date) {
+  const n = new Date(date)
+  return n.getFullYear() + '-' + (n.getMonth() + 1)
+})
+
 const app = new Vue({
     ...App,
 	store

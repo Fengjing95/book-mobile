@@ -27,6 +27,7 @@
 		<view class="u-m-t-20">
 			<u-cell-group>
 				<u-cell-item icon="star" title="收藏" @click="gotoCollection"></u-cell-item>
+				<u-cell-item icon="eye" title="历史记录" @click="gotoHistory"></u-cell-item>
 				<u-cell-item icon="chat" title="消息" @click="goToMsg">
 					<u-badge type="error" :count="msgNum"></u-badge>
 				</u-cell-item>
@@ -86,6 +87,9 @@
 			},
 			goToMsg() {
 				this.$u.route('/pages/message/message')
+			},
+			gotoHistory() {
+				this.$u.route('/pages/mine/history')
 			},
 			getUserInfo() {
 				this.$u.get('/user/getinfo').then(res => {
