@@ -70,6 +70,12 @@ Vue.filter('formatDate', function (date) {
   const n = new Date(date)
   return n.getFullYear() + '-' + (n.getMonth() + 1)
 })
+// 挂载过滤器=>格式化时间
+Vue.filter('formatDate2', function (date) {
+  const n = new Date(date)
+  return n.getFullYear() + '-' + (n.getMonth() + 1) + '-' + n.getDate()
+    + ' ' + n.getHours() + ':' + n.getMinutes() + ':' + n.getSeconds()
+})
 
 const app = new Vue({
     ...App,

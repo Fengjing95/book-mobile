@@ -33,7 +33,7 @@
 			<view class="h">
 				<h3>章节列表</h3>
 				<view class="btns">
-					<u-button class="btn" size="mini" :plain="true" type="success">试读</u-button>
+					<u-button class="btn" size="mini" :plain="true" type="success" @click="freeRead">试读</u-button>
 					<u-button class="btn" size="mini" :plain="true" type="primary"
 					 :disabled="!book.bookState || unlockInfo.limitAll" @click="unlockNext">解锁下一部分</u-button>
 					<u-button class="btn" size="mini" :plain="true" type="error"
@@ -41,18 +41,27 @@
 				</view>
 			</view>
 			<view class="p-list">
-				<u-button class="p-btn" v-for="index in part" :key="index" 
-				size="mini" :disabled="(unlockInfo.limitPage < index && !unlockInfo.limitAll) || !book.bookState">
-					{{index !== part ? (index - 1) * 100 + 1 + '—' + index * 100 :
-					 (index - 1) * 100 + 1 + '—' + book.bookPage }}
-				</u-button>
+				<!-- #ifndef MP-WEIXIN -->
+					<u-button class="p-btn" v-for="index in part" :key="index" @click="readOnline(index)"
+					size="mini" :disabled="(unlockInfo.limitPage < index && !unlockInfo.limitAll) || !book.bookState">
+						{{index !== part ? (index - 1) * 100 + 1 + '—' + index * 100 :
+						 (index - 1) * 100 + 1 + '—' + book.bookPage }}
+					</u-button>
+				<!-- #endif -->
+				<!-- #ifdef MP-WEIXIN -->
+					<u-button class="p-btn" v-for="index in part" :key="index" @click="readOnline(index + 1)"
+					size="mini" :disabled="(unlockInfo.limitPage < index && !unlockInfo.limitAll) || !book.bookState">
+						{{(index + 1) !== part ? index * 100 + 1 + '—' + (index + 1) * 100 :
+						 index * 100 + 1 + '—' + book.bookPage }}
+					</u-button>
+				<!-- #endif -->
 			</view>
 			
 		</view>
 		<view class="recommend">
 			<h3>推荐你看</h3>
 			<view class="list">
-				<view class="re-item" v-for="item in recommend" :key="item.bookId" @click="linkTo(item.bookId)">
+				<view class="re-item" v-for="item in recommend" :key="item.bookId" @click="linkTo(item)">
 					<img :src="getImg(item.image)" />
 					<view class="book-name">
 						{{item.bookName}}
@@ -99,8 +108,11 @@
 			},
 		},
 		methods: {
-			linkTo(bookId) {
-				this.$u.route(`/pages/book/book?bookId=${bookId}`)
+			linkTo(book) {
+				this.$u.route({
+					type: 'redirect',
+					url: `/pages/book/book?bookId=${book.bookId}`,
+				})
 			},
 			getImg(image) {
 				return this.$photoHeader + image
@@ -182,21 +194,28 @@
 				})
 			},
 			freeRead() {
-				
+				const url = `/read/tryread?bookId=${this.bookId}`
+				this.$u.route(`/pages/read/read?url=${encodeURIComponent(url)}&title=${this.book.bookName}`)
 			},
 			readOnline(part) {
-				this.$u.get(``)
+				const url = `/read/read?bookId=${this.bookId}&part=${part}`
+				this.$u.route(`/pages/read/read?url=${encodeURIComponent(url)}&title=${this.book.bookName}`)
 			},
 			
 		},
-		created() {
+		// created() {
+		// 	this.getBookInfo()
+		// 	this.getRecommend()
+		// 	this.getReviewList()
+		// 	this.getUnlockInfo()
+		// },
+		onLoad(options) {
+			this.bookId = options.bookId
+			// console.log(this.bookId);
 			this.getBookInfo()
 			this.getRecommend()
 			this.getReviewList()
 			this.getUnlockInfo()
-		},
-		onLoad(options) {
-			this.bookId = options.bookId
 		},
 		onReachBottom() {
 			if(this.pageNumber < this.allPageNumber) {
@@ -291,7 +310,7 @@
 		// flex-wrap: wrap;
 		// flex-direction: row;
 		.p-btn {
-			width: 80.3px;
+			width: 80px;
 			margin: 0 10px 5px 10px;
 		}
 	}
@@ -308,7 +327,7 @@
 			display: inline-flex;
 			padding: 5px 10px;
 			.btn {
-				margin: 0 10px;
+				margin: 0 7px;
 			}
 		}
 	}

@@ -164,6 +164,15 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "历史记录",
+                "enablePullDownRefresh": true
+            }
+            
+        }
+        ,{
+            "path" : "pages/read/read",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
             

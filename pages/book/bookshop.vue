@@ -72,7 +72,7 @@
 			},
 			getBookTop() {
 				this.$u.get('/book/typetop?typeId=1').then(res => {
-					console.log(res);
+					// console.log(res);
 					this.bookTopLilst = res.obj
 				})
 			}
