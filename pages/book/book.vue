@@ -260,7 +260,7 @@
 			box-sizing: border-box;
 		}
 		.type {
-			background: url(../../static/image/标签.png) no-repeat;
+			background: url(../../static/image/tag.png) no-repeat;
 			width: 46px;
 			height: 20px;
 			color: #fff;
